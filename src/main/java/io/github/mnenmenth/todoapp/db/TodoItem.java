@@ -20,6 +20,14 @@ public class TodoItem
     private String description;
     private Boolean complete;
 
+    public TodoItem() {}
+    public TodoItem(String name, String description, Boolean complete)
+    {
+        this.name = name;
+        this.description = description;
+        this.complete = complete;
+    }
+
     public Integer getId()
     {
         return id;
