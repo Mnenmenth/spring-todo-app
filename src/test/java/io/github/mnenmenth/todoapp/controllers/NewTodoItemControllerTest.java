@@ -1,4 +1,4 @@
-package io.github.mnenmenth.todoapp.service;
+package io.github.mnenmenth.todoapp.controllers;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
