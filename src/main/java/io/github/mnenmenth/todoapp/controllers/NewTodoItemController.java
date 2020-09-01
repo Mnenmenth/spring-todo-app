@@ -20,7 +20,7 @@ public class NewTodoItemController
     private TodoItemService todoItemService;
 
     @PostMapping
-    public ResponseEntity<Object> newTodoItem(@Validated @RequestParam String name, @RequestParam String description)
+    public ResponseEntity<Object> newTodoItem(@RequestParam String name, @RequestParam String description)
     {
         return todoItemService.createNew(name, description);
     }

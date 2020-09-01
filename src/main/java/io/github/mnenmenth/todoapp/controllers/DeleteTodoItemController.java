@@ -19,7 +19,7 @@ public class DeleteTodoItemController
     private TodoItemService todoItemService;
 
     @PostMapping
-    public ResponseEntity<Object> deleteTodoItem(@Validated @RequestParam Integer id)
+    public ResponseEntity<Object> deleteTodoItem(@RequestParam Integer id)
     {
         return todoItemService.delete(id);
     }
