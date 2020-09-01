@@ -3,6 +3,8 @@ package io.github.mnenmenth.todoapp.controllers;
 import io.github.mnenmenth.todoapp.service.TodoItemService;
 import io.github.mnenmenth.todoapp.db.TodoItem;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -18,7 +20,7 @@ public class NewTodoItemController
     private TodoItemService todoItemService;
 
     @PostMapping
-    public TodoItem newTodoItem(@RequestParam String name, @RequestParam String description)
+    public ResponseEntity<Object> newTodoItem(@Validated @RequestParam String name, @RequestParam String description)
     {
         return todoItemService.createNew(name, description);
     }
