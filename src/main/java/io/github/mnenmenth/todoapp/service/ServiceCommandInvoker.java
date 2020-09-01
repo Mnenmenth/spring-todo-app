@@ -1,5 +1,7 @@
 package io.github.mnenmenth.todoapp.service;
 
+import org.springframework.http.ResponseEntity;
+
 /**
  * Created by Earl Kennedy
  * https://github.com/Mnenmenth
@@ -8,7 +10,7 @@ package io.github.mnenmenth.todoapp.service;
 // Invokes a given service command
 public class ServiceCommandInvoker
 {
-    public<T> T invoke(IServiceCommand<T> command)
+    public ResponseEntity<Object> invoke(IServiceCommand command)
     {
         return command.execute();
     }

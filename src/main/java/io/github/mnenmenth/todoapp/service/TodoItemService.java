@@ -1,6 +1,7 @@
 package io.github.mnenmenth.todoapp.service;
 
 import io.github.mnenmenth.todoapp.db.TodoItem;
+import org.springframework.http.ResponseEntity;
 
 import java.util.Collection;
 
@@ -12,9 +13,9 @@ import java.util.Collection;
 // Service to perform operations on TodoItems
 public interface TodoItemService
 {
-    TodoItem createNew(String name, String description);
-    TodoItem delete(Integer id);
-    TodoItem findById(Integer id);
-    Collection<TodoItem> findByName(String name);
-    Collection<TodoItem> findAll();
+    ResponseEntity<Object> createNew(String name, String description);
+    ResponseEntity<Object> delete(Integer id);
+    ResponseEntity<Object> findById(Integer id);
+    ResponseEntity<Object> findByName(String name);
+    ResponseEntity<Object> findAll();
 }

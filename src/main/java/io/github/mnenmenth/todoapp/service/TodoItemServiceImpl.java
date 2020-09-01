@@ -3,6 +3,7 @@ package io.github.mnenmenth.todoapp.service;
 import io.github.mnenmenth.todoapp.db.TodoItem;
 import io.github.mnenmenth.todoapp.db.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -24,31 +25,31 @@ public class TodoItemServiceImpl implements TodoItemService
     }
 
     @Override
-    public TodoItem createNew(String name, String description)
+    public ResponseEntity<Object> createNew(String name, String description)
     {
         return invoker.invoke(new NewTodoItemCommand(todoRepository, name, description));
     }
 
     @Override
-    public TodoItem delete(Integer id)
+    public ResponseEntity<Object> delete(Integer id)
     {
         return null;
     }
 
     @Override
-    public TodoItem findById(Integer id)
+    public ResponseEntity<Object> findById(Integer id)
     {
         return null;
     }
 
     @Override
-    public Collection<TodoItem> findByName(String name)
+    public ResponseEntity<Object> findByName(String name)
     {
         return null;
     }
 
     @Override
-    public Collection<TodoItem> findAll()
+    public ResponseEntity<Object> findAll()
     {
         return null;
     }

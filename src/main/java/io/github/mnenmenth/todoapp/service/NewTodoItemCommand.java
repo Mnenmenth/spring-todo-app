@@ -2,6 +2,8 @@ package io.github.mnenmenth.todoapp.service;
 
 import io.github.mnenmenth.todoapp.db.TodoItem;
 import io.github.mnenmenth.todoapp.db.TodoRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 /**
  * Created by Earl Kennedy
@@ -9,7 +11,7 @@ import io.github.mnenmenth.todoapp.db.TodoRepository;
  */
 
 // Creates a new TodoItem in the given TodoRepository and returns the created entity
-public class NewTodoItemCommand implements IServiceCommand<TodoItem>
+public class NewTodoItemCommand implements IServiceCommand
 {
     private final TodoRepository todoRepository;
 
@@ -23,8 +25,9 @@ public class NewTodoItemCommand implements IServiceCommand<TodoItem>
     }
 
     @Override
-    public TodoItem execute()
+    public ResponseEntity<Object> execute()
     {
-        return todoRepository.save(new TodoItem(name, description, false));
+        TodoItem item = todoRepository.save(new TodoItem(name, description, false));
+        return ResponseEntity.status(HttpStatus.CREATED).body(item);
     }
 }
