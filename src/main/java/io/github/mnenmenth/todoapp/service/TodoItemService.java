@@ -15,6 +15,6 @@ public interface TodoItemService
     TodoItem createNew(String name, String description);
     TodoItem delete(Integer id);
     TodoItem findById(Integer id);
-    Collection<TodoItem> findByName(Integer id);
+    Collection<TodoItem> findByName(String name);
     Collection<TodoItem> findAll();
 }

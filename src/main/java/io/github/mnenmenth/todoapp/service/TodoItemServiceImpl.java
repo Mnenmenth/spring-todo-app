@@ -42,7 +42,7 @@ public class TodoItemServiceImpl implements TodoItemService
     }
 
     @Override
-    public Collection<TodoItem> findByName(Integer id)
+    public Collection<TodoItem> findByName(String name)
     {
         return null;
     }
