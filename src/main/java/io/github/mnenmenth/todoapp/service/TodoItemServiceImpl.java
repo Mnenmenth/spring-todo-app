@@ -33,7 +33,7 @@ public class TodoItemServiceImpl implements TodoItemService
     @Override
     public ResponseEntity<Object> delete(Integer id)
     {
-        return null;
+        return invoker.invoke(new DeleteTodoItemCommand(todoRepository, id));
     }
 
     @Override
