@@ -84,4 +84,34 @@ public class FindTodoItemControllerTest
                .andExpect(MockMvcResultMatchers.status().isUnprocessableEntity())
                .andExpect(MockMvcResultMatchers.content().string("No TodoItem entity exists with the given name of 'this is NOT a name'"));
     }
+
+    @Test
+    public void findAll() throws Exception
+    {
+        // Create a couple more TodoItems
+        mockMvc.perform(post("/todoapp/new").param("name", "this is a second name").param("description", "this is a description"))
+               .andDo(print());
+        mockMvc.perform(post("/todoapp/new").param("name", "this is a third name").param("description", "this is a description"))
+               .andDo(print());
+
+        mockMvc.perform(get("/todoapp/find/all"))
+               .andDo(print())
+               .andExpect(MockMvcResultMatchers.status().isOk())
+               .andExpect(MockMvcResultMatchers.content().string(
+                       "[{\"id\":1,\"name\":\"this is a name\",\"description\":\"this is a description\",\"complete\":false}," +
+                               "{\"id\":2,\"name\":\"this is a second name\",\"description\":\"this is a description\",\"complete\":false}," +
+                               "{\"id\":3,\"name\":\"this is a third name\",\"description\":\"this is a description\",\"complete\":false}]"));
+    }
+
+    @Test
+    public void findNone() throws Exception
+    {
+        mockMvc.perform(post("/todoapp/delete").param("id", String.valueOf(1)))
+               .andDo(print());
+
+        mockMvc.perform(get("/todoapp/find/all"))
+               .andDo(print())
+               .andExpect(MockMvcResultMatchers.status().isOk())
+               .andExpect(MockMvcResultMatchers.content().string("[]"));
+    }
 }

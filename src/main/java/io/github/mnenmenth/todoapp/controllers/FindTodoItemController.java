@@ -34,6 +34,6 @@ public class FindTodoItemController
     @GetMapping(path = "/todoapp/find/all")
     public ResponseEntity<Object> findAllTodoItems()
     {
-        return null;
+        return todoItemService.findAll();
     }
 }
