@@ -13,6 +13,8 @@ import java.util.Optional;
  * https://github.com/Mnenmenth
  */
 
+// Attempts to update a TodoItem in the given TodoItemRepository
+// A field is only updated if the value is present in the Optional<>
 public class UpdateTodoItemCommand implements IServiceCommand
 {
     private final TodoRepository todoRepository;

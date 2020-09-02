@@ -50,18 +50,18 @@ public class TodoItemServiceImpl implements TodoItemService
     @Override
     public ResponseEntity<Object> findById(Integer id)
     {
-        return null;
+        return invoker.invoke(new FindTodoItemByIdCommand(todoRepository, id));
     }
 
     @Override
     public ResponseEntity<Object> findByName(String name)
     {
-        return null;
+        return invoker.invoke(new FindTodoItemsByNameCommand(todoRepository, name));
     }
 
     @Override
     public ResponseEntity<Object> findAll()
     {
-        return null;
+        return invoker.invoke(new FindAllTodoItemsCommand(todoRepository));
     }
 }
