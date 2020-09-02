@@ -48,4 +48,31 @@ public class FindTodoItemControllerTest
                .andExpect(MockMvcResultMatchers.status().isUnprocessableEntity())
                .andExpect(MockMvcResultMatchers.content().string("No TodoItem entity exists with the given id of '5'"));
     }
+
+    @Test
+    public void findByName() throws Exception
+    {
+        mockMvc.perform(get("/todoapp/find/name/this is a name"))
+               .andDo(print())
+               .andExpect(MockMvcResultMatchers.status().isOk())
+               .andExpect(MockMvcResultMatchers.content().string("[{\"id\":1,\"name\":\"this is a name\",\"description\":\"this is a description\",\"complete\":false}]"));
+    }
+
+    @Test
+    public void findMultipleByName() throws Exception
+    {
+        // Create a couple more TodoItems
+        mockMvc.perform(post("/todoapp/new").param("name", "this is a name").param("description", "this is a description"))
+               .andDo(print());
+        mockMvc.perform(post("/todoapp/new").param("name", "this is a name").param("description", "this is a description"))
+               .andDo(print());
+
+        mockMvc.perform(get("/todoapp/find/name/this is a name"))
+               .andDo(print())
+               .andExpect(MockMvcResultMatchers.status().isOk())
+               .andExpect(MockMvcResultMatchers.content().string(
+                       "[{\"id\":1,\"name\":\"this is a name\",\"description\":\"this is a description\",\"complete\":false}," +
+                               "{\"id\":2,\"name\":\"this is a name\",\"description\":\"this is a description\",\"complete\":false}," +
+                               "{\"id\":3,\"name\":\"this is a name\",\"description\":\"this is a description\",\"complete\":false}]"));
+    }
 }

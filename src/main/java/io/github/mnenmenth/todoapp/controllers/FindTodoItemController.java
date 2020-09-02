@@ -28,7 +28,7 @@ public class FindTodoItemController
     @GetMapping(path = "/todoapp/find/name/{name}")
     public ResponseEntity<Object> findTodoItemByName(@PathVariable String name)
     {
-        return null;
+        return todoItemService.findByName(name);
     }
 
     @GetMapping(path = "/todoapp/find/all")
