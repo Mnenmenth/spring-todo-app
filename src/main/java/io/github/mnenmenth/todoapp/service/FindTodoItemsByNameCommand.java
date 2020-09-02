@@ -1,7 +1,11 @@
 package io.github.mnenmenth.todoapp.service;
 
+import io.github.mnenmenth.todoapp.db.TodoItem;
 import io.github.mnenmenth.todoapp.db.TodoRepository;
+import io.github.mnenmenth.todoapp.service.exception.TodoItemNotFoundException;
 import org.springframework.http.ResponseEntity;
+
+import java.util.List;
 
 /**
  * Created by Earl Kennedy
@@ -22,6 +26,14 @@ public class FindTodoItemsByNameCommand implements IServiceCommand
     @Override
     public ResponseEntity<Object> execute()
     {
-        return ResponseEntity.ok(todoRepository.findByName(name));
+        List<TodoItem> todoItems = todoRepository.findByName(name);
+        if(!todoItems.isEmpty())
+        {
+            return ResponseEntity.ok(todoItems);
+        }
+        else
+        {
+            throw new TodoItemNotFoundException(name);
+        }
     }
 }

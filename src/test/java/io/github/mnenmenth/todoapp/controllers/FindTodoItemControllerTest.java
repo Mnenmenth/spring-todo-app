@@ -75,4 +75,13 @@ public class FindTodoItemControllerTest
                                "{\"id\":2,\"name\":\"this is a name\",\"description\":\"this is a description\",\"complete\":false}," +
                                "{\"id\":3,\"name\":\"this is a name\",\"description\":\"this is a description\",\"complete\":false}]"));
     }
+
+    @Test
+    public void findByInvalidName() throws Exception
+    {
+        mockMvc.perform(get("/todoapp/find/name/this is NOT a name"))
+               .andDo(print())
+               .andExpect(MockMvcResultMatchers.status().isUnprocessableEntity())
+               .andExpect(MockMvcResultMatchers.content().string("No TodoItem entity exists with the given name of 'this is NOT a name'"));
+    }
 }
