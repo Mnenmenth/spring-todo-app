@@ -1,6 +1,7 @@
 package io.github.mnenmenth.todoapp.service;
 
 import io.github.mnenmenth.todoapp.db.TodoRepository;
+import io.github.mnenmenth.todoapp.service.exception.TodoItemNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -33,7 +34,7 @@ public class DeleteTodoItemCommand implements IServiceCommand
         // Otherwise, return a bad request status with error message
         else
         {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No TodoItem entity exists with the given id of '" + id + "'");
+            throw new TodoItemNotFoundException(id);
         }
     }
 }

@@ -73,7 +73,7 @@ public class UpdateTodoItemControllerTest
     {
         mockMvc.perform(put("/todoapp/update/5").param("complete", "true"))
                .andDo(print())
-               .andExpect(MockMvcResultMatchers.status().isBadRequest())
+               .andExpect(MockMvcResultMatchers.status().isUnprocessableEntity())
                .andExpect(MockMvcResultMatchers.content().string("No TodoItem entity exists with the given id of '5'"));
     }
 }

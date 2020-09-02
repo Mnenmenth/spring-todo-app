@@ -38,7 +38,7 @@ public class DeleteTodoItemControllerTest
     {
         mockMvc.perform(post("/todoapp/delete").param("id", String.valueOf(1)))
                .andDo(print())
-               .andExpect(MockMvcResultMatchers.status().isBadRequest())
+               .andExpect(MockMvcResultMatchers.status().isUnprocessableEntity())
                .andExpect(MockMvcResultMatchers.content().string("No TodoItem entity exists with the given id of '1'"));
     }
 }
