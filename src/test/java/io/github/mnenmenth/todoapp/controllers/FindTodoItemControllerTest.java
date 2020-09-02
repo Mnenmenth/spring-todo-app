@@ -106,7 +106,7 @@ public class FindTodoItemControllerTest
     @Test
     public void findNone() throws Exception
     {
-        mockMvc.perform(post("/todoapp/delete").param("id", String.valueOf(1)))
+        mockMvc.perform(post("/todoapp/delete/1"))
                .andDo(print());
 
         mockMvc.perform(get("/todoapp/find/all"))

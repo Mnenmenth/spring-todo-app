@@ -28,7 +28,7 @@ public class DeleteTodoItemControllerTest
         mockMvc.perform(post("/todoapp/new").param("name", "this is a name").param("description", "this is a description"))
                .andDo(print());
 
-        mockMvc.perform(post("/todoapp/delete").param("id", String.valueOf(1)))
+        mockMvc.perform(post("/todoapp/delete/1"))
                .andDo(print())
                .andExpect(MockMvcResultMatchers.status().isNoContent());
     }
@@ -36,7 +36,7 @@ public class DeleteTodoItemControllerTest
     @Test
     public void deleteInvalidTodoItem() throws Exception
     {
-        mockMvc.perform(post("/todoapp/delete").param("id", String.valueOf(1)))
+        mockMvc.perform(post("/todoapp/delete/1"))
                .andDo(print())
                .andExpect(MockMvcResultMatchers.status().isUnprocessableEntity())
                .andExpect(MockMvcResultMatchers.content().string("No TodoItem entity exists with the given id of '1'"));
