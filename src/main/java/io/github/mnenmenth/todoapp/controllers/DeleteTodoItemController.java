@@ -18,7 +18,7 @@ public class DeleteTodoItemController
     @Autowired
     private TodoItemService todoItemService;
 
-    @PostMapping
+    @DeleteMapping
     public ResponseEntity<Object> deleteTodoItem(@PathVariable Integer id)
     {
         return todoItemService.delete(id);

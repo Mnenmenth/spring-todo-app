@@ -20,7 +20,7 @@ public class UpdateTodoItemController
     @Autowired
     private TodoItemService todoItemService;
 
-    @PutMapping
+    @PatchMapping
     public ResponseEntity<Object> updateTodoItem(
             @PathVariable Integer id,
             @RequestParam Optional<String> name,

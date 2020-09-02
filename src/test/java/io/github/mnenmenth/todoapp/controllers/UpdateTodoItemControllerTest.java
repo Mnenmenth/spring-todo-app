@@ -10,7 +10,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 /**
@@ -37,7 +37,7 @@ public class UpdateTodoItemControllerTest
     public void updateTodoItemAll() throws Exception
     {
 
-        mockMvc.perform(put("/todoapp/update/1").param("name", "a").param("description", "b").param("complete", "true"))
+        mockMvc.perform(patch("/todoapp/update/1").param("name", "a").param("description", "b").param("complete", "true"))
                .andDo(print())
                .andExpect(MockMvcResultMatchers.status().isOk())
                .andExpect(MockMvcResultMatchers.content().string("{\"id\":1,\"name\":\"a\",\"description\":\"b\",\"complete\":true}"));
@@ -46,7 +46,7 @@ public class UpdateTodoItemControllerTest
     @Test
     public void updateTodoItemName() throws Exception
     {
-        mockMvc.perform(put("/todoapp/update/1").param("name", "a"))
+        mockMvc.perform(patch("/todoapp/update/1").param("name", "a"))
                .andDo(print())
                .andExpect(MockMvcResultMatchers.status().isOk())
                .andExpect(MockMvcResultMatchers.content().string("{\"id\":1,\"name\":\"a\",\"description\":\"this is a description\",\"complete\":false}"));
@@ -55,7 +55,7 @@ public class UpdateTodoItemControllerTest
     @Test
     public void updateTodoItemDesc() throws Exception
     {
-        mockMvc.perform(put("/todoapp/update/1").param("description", "b"))
+        mockMvc.perform(patch("/todoapp/update/1").param("description", "b"))
                .andDo(print())
                .andExpect(MockMvcResultMatchers.status().isOk())
                .andExpect(MockMvcResultMatchers.content().string("{\"id\":1,\"name\":\"this is a name\",\"description\":\"b\",\"complete\":false}"));
@@ -64,7 +64,7 @@ public class UpdateTodoItemControllerTest
     @Test
     public void updateTodoItemComplete() throws Exception
     {
-        mockMvc.perform(put("/todoapp/update/1").param("complete", "true"))
+        mockMvc.perform(patch("/todoapp/update/1").param("complete", "true"))
                .andDo(print())
                .andExpect(MockMvcResultMatchers.status().isOk())
                .andExpect(MockMvcResultMatchers.content().string("{\"id\":1,\"name\":\"this is a name\",\"description\":\"this is a description\",\"complete\":true}"));
@@ -73,7 +73,7 @@ public class UpdateTodoItemControllerTest
     @Test
     public void updateInvalidTodoItem() throws Exception
     {
-        mockMvc.perform(put("/todoapp/update/5").param("complete", "true"))
+        mockMvc.perform(patch("/todoapp/update/5").param("complete", "true"))
                .andDo(print())
                .andExpect(MockMvcResultMatchers.status().isUnprocessableEntity())
                .andExpect(MockMvcResultMatchers.content().string("No TodoItem entity exists with the given id of '5'"));

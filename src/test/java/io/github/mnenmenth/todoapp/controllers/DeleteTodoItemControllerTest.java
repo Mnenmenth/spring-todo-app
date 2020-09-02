@@ -8,6 +8,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
@@ -30,7 +31,7 @@ public class DeleteTodoItemControllerTest
         mockMvc.perform(post("/todoapp/new").param("name", "this is a name").param("description", "this is a description"))
                .andDo(print());
 
-        mockMvc.perform(post("/todoapp/delete/1"))
+        mockMvc.perform(delete("/todoapp/delete/1"))
                .andDo(print())
                .andExpect(MockMvcResultMatchers.status().isNoContent());
     }
@@ -38,7 +39,7 @@ public class DeleteTodoItemControllerTest
     @Test
     public void deleteInvalidTodoItem() throws Exception
     {
-        mockMvc.perform(post("/todoapp/delete/1"))
+        mockMvc.perform(delete("/todoapp/delete/1"))
                .andDo(print())
                .andExpect(MockMvcResultMatchers.status().isUnprocessableEntity())
                .andExpect(MockMvcResultMatchers.content().string("No TodoItem entity exists with the given id of '1'"));

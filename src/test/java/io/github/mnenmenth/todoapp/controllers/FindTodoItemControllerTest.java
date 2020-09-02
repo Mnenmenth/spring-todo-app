@@ -9,8 +9,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 /**
@@ -108,7 +107,7 @@ public class FindTodoItemControllerTest
     @Test
     public void findNone() throws Exception
     {
-        mockMvc.perform(post("/todoapp/delete/1"))
+        mockMvc.perform(delete("/todoapp/delete/1"))
                .andDo(print());
 
         mockMvc.perform(get("/todoapp/find/all"))
