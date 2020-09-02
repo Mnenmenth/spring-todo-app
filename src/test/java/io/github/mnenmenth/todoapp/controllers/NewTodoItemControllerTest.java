@@ -25,8 +25,10 @@ public class NewTodoItemControllerTest
     @Test
     public void newTodoItem() throws Exception
     {
-        this.mockMvc.perform(post("/todoapp/new").param("name", "this is a name").param("description", "this is a description")).andDo(print()).andExpect(
-                MockMvcResultMatchers.content().string("{\"id\":1,\"name\":\"this is a name\",\"description\":\"this is a description\",\"complete\":false}"));
+        this.mockMvc.perform(post("/todoapp/new").param("name", "this is a name").param("description", "this is a description"))
+                    .andDo(print())
+                    .andExpect(MockMvcResultMatchers.status().isOk())
+                    .andExpect(MockMvcResultMatchers.content().string("{\"id\":1,\"name\":\"this is a name\",\"description\":\"this is a description\",\"complete\":false}"));
 
     }
 }
