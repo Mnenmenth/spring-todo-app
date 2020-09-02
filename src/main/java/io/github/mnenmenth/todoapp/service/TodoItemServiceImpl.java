@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Optional;
 
 /**
  * Created by Earl Kennedy
@@ -34,6 +35,16 @@ public class TodoItemServiceImpl implements TodoItemService
     public ResponseEntity<Object> delete(Integer id)
     {
         return invoker.invoke(new DeleteTodoItemCommand(todoRepository, id));
+    }
+
+    @Override
+    public ResponseEntity<Object> update(Integer id,
+                                         Optional<String> name,
+                                         Optional<String> description,
+                                         Optional<Boolean> complete
+                                        )
+    {
+        return invoker.invoke(new UpdateTodoItemCommand(todoRepository, id, name, description, complete));
     }
 
     @Override
