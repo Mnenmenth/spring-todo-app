@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.*;
  */
 
 @RestController
-@RequestMapping("/todoapp/delete")
+@RequestMapping("/todoapp/delete/{id}")
 public class DeleteTodoItemController
 {
     @Autowired
     private TodoItemService todoItemService;
 
     @PostMapping
-    public ResponseEntity<Object> deleteTodoItem(@RequestParam Integer id)
+    public ResponseEntity<Object> deleteTodoItem(@PathVariable Integer id)
     {
         return todoItemService.delete(id);
     }
