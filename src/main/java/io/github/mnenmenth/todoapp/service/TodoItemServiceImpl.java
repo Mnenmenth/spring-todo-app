@@ -50,7 +50,7 @@ public class TodoItemServiceImpl implements TodoItemService
     @Override
     public ResponseEntity<Object> findById(Integer id)
     {
-        return null;
+        return invoker.invoke(new FindTodoItemByIdCommand(todoRepository, id));
     }
 
     @Override
