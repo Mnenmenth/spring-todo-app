@@ -20,39 +20,39 @@ mysql> grant create, select, insert, delete, update on tododb.* to 'todo'@'%';
 ## Usage
 ### Running
 In the project directory, run
-```console
+```shell
 ./gradlew bootRun
 ```
 
 ### Available [CURL](https://curl.haxx.se/) commands
 #### Create a TodoItem
-```console
+```shell
 curl -X POST localhost:8080/todoapp/new -d name='{name}' -d description='{description}'
 ```
 * This will respond with `200 OK` and the newly created TodoItem on success  
 * Example:
-    ```console
+    ```shell
     $ curl -X POST localhost:8080/todoapp/new -d name='name' -d description='description'
     {"id":1,"name":"name","description":"description","complete":false}
     ```
 
 #### Delete a TodoItem
-```console
+```shell
 curl -X DELETE localhost:8080/todoapp/delete/{id}
 ```
 * This will respond with `204 No Content` on success and `422 Unprocessable Entity` with an error message if the id doesn't exist
 * Example
-    ```console
+    ```shell
     $ curl -X DELETE localhost:8080/todoapp/delete/1
     ```
 
 #### Updating a TodoItem
-```console
+```shell
 curl -X PATCH localhost:8080/todoapp/{id} -d name='{name}' -d description='{description}' -d complete='{complete}'
 ```
 * This will respond with `200 OK` and the updated TodoItem on success and `422 Unprocessable Entity` with an error message if the id doesn't exist
 * Example:
-    ```console
+    ```shell
     $ curl -X PATCH localhost:8080/todoapp/update/1 -d complete='true'
     {"id":1,"name":"name","description":"description","complete":true}
     ```
@@ -61,23 +61,23 @@ curl -X PATCH localhost:8080/todoapp/{id} -d name='{name}' -d description='{desc
     * `{complete}` must be `true` or `false`
 
 #### Finding a TodoItem by ID
-```console
+```shell
 curl -X GET localhost:8080/todoapp/find/id/{id}
 ```
 * This will respond with `200 OK` and the found TodoItem on success and `422 Unprocessable Entity` with an error message if the id doesn't exist
 * Example:
-    ```console
+    ```shell
     $ curl -X GET localhost:8080/todoapp/find/id/1
     {"id":1,"name":"name","description":"description","complete":false}
     ```
 
 #### Finding a TodoItem by name
-```console
+```shell
 curl -X GET localhost:8080/todoapp/find/name/{name}
 ```
 * This will respond with `200 OK` and a list of found TodoItem(s) on success and `422 Unprocessable Entity` with an error message if `{name}` has no matches
 * Example:
-    ```console
+    ```shell
     $ curl -X GET localhost:8080/todoapp/find/name/name
     [{"id":1,"name":"name","description":"description","complete":false},{"id":2,"name":"name","description":"another description","complete":false}]
     ```
@@ -86,7 +86,7 @@ curl -X GET localhost:8080/todoapp/find/name/{name}
     i.e. `localhost:8080/todoapp/find/name/name%20with%20spaces`
   
 #### Finding all TodoItems
-```console
+```shell
 $ curl -X GET localhost:8080/todoapp/find/all
 ```
 * This will respond with `200 OK` and a list of found TodoItem(s) on success and an empty list (`[]`) if none there are no TodoItems
